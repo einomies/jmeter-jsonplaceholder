@@ -5,13 +5,15 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments">
           <elementProp name="thread.number" elementType="Argument">
             <stringProp name="Argument.name">thread.number</stringProp>
-            <stringProp name="Argument.value">${__P(thread.number,2)}</stringProp>
+            <stringProp name="Argument.value">${__P(thread.number,10)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="startup.delay" elementType="Argument">
@@ -26,7 +28,7 @@
           </elementProp>
           <elementProp name="test.duration" elementType="Argument">
             <stringProp name="Argument.name">test.duration</stringProp>
-            <stringProp name="Argument.value">${__P(test.duration,10)}</stringProp>
+            <stringProp name="Argument.value">${__P(test.duration,20)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="path" elementType="Argument">
@@ -37,6 +39,11 @@
           <elementProp name="throughput.per.minute" elementType="Argument">
             <stringProp name="Argument.name">throughput.per.minute</stringProp>
             <stringProp name="Argument.value">${__P(throughput.per.minute,60)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="loop.count" elementType="Argument">
+            <stringProp name="Argument.name">loop.count</stringProp>
+            <stringProp name="Argument.value">${__P(loop.count,5)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -55,15 +62,15 @@
       </UserParameters>
       <hashTree/>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
-        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <stringProp name="ThreadGroup.num_threads">${thread.number}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${rampup}</stringProp>
         <stringProp name="ThreadGroup.duration">${test.duration}</stringProp>
         <stringProp name="ThreadGroup.delay">${startup.delay}</stringProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">18</stringProp>
+          <stringProp name="LoopController.loops">${loop.count}</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
