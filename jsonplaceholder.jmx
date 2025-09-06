@@ -28,7 +28,7 @@
           </elementProp>
           <elementProp name="test.duration" elementType="Argument">
             <stringProp name="Argument.name">test.duration</stringProp>
-            <stringProp name="Argument.value">${__P(test.duration,20)}</stringProp>
+            <stringProp name="Argument.value">${__P(test.duration,10)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="path" elementType="Argument">
@@ -44,6 +44,11 @@
           <elementProp name="loop.count" elementType="Argument">
             <stringProp name="Argument.name">loop.count</stringProp>
             <stringProp name="Argument.value">${__P(loop.count,5)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="report.dir" elementType="Argument">
+            <stringProp name="Argument.name">report.dir</stringProp>
+            <stringProp name="Argument.value">${__time(yyyy-MM-dd-HH-mm-ss)}-report</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -122,7 +127,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
             </collectionProp>
